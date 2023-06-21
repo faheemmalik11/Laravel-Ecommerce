@@ -17,7 +17,7 @@ class SuperAdminSeeder extends Seeder
         User::create([
             'name' => 'Super Admin',
             'email' => 'qazizubair0309@gmail.com',
-            'password' => 'password123', // password
+            'password' => bcrypt('password123'), // password
             'profile_image'=> 'store/images/super_admin.jpg', 
             'role_id'=>2
         ]);

@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login'])->name('logPost');
+Route::get('/user', [AuthController::class, 'getUser']);
+
+// Route::middleware('jwt.verify')->group(function() {
+//     Route::get('/dashboard', function() {
+//         return response()->json(['message' => 'Welcome to dashboard'], 200);
+//     });
+// });
+
+// Route::get('/home', [HomeController::class, 'check'] )->name('home');
+
+
+
+

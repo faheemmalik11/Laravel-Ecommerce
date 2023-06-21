@@ -119,7 +119,8 @@ return [
     |--------------------------------------------------------------------------
     | Session Cookie Name
     |--------------------------------------------------------------------------
-    |
+    |ded as available. Typically, this will be the root path of
+    | your application but you are free to change this when necessary.
     | Here you may change the name of the cookie used to identify a session
     | instance by ID. The name specified here will get used every time a
     | new session cookie is created by the framework for every driver.
