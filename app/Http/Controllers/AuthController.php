@@ -24,12 +24,12 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
         $credentials = $request->only('email', 'password');
-        
-        
-        
-
+        $token = Auth::attempt($credentials);
+        if (!$token) {
+            return redirect()->route('login');
+        }
         $credentials = json_encode($credentials);
-        $cookie = \Cookie::make('credentials', $credentials, 24*60,'/', null, false, true);
+        $cookie = \Cookie::make('credentials', $credentials, 24*60*60,'/', null, false, true);
      
         return redirect()->route('home')->withCookie($cookie);
         

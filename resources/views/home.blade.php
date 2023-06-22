@@ -1,7 +1,13 @@
 <x-master>
-    
+
     @section('content')
-    <h1>HOME</h1>
+    
+    @if(session('message'))
+    <p class="alert alert-primary">{{session('message')}}</p>
+    @endif
+
+    
+    
     @endsection
     
    

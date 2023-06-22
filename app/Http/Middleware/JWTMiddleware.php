@@ -20,26 +20,26 @@ class JWTMiddleware
     public function handle(Request $request, Closure $next)
     {       
             $credArray = [];
-            try {
-                if($_COOKIE['credentials']){
+
+                if(isset($_COOKIE['credentials'])){
         
                     $credentials = json_decode($_COOKIE['credentials']);
+                    // dd($credentials);
                     foreach ($credentials as $key => $value) {
+                        
                         $credArray[$key] = $value;
-                            
+                       
                     };
-                    
-                    
+
                     $token = Auth::attempt($credArray);
                     $user = Auth::user();
-                    if (!$token) {
-                        return route('login');
-                    }
+                    
+                
+                
                     return $next($request);
                 }
-            } catch (\Throwable $th) {
                 return redirect()->route('login');
-            }
+        
             
             
         

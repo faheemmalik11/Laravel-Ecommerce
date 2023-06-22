@@ -30,7 +30,7 @@
     <div class="row">
 
       <!-- Blog Entries Column -->
-      <div class="h-100  d-flex align-items-center justify-content-center p-3">
+      <div class="h-100  align-items-center justify-content-center p-3">
 
         @yield('content')
 
@@ -51,8 +51,9 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  @yield('scripts')
 
 </body>
 

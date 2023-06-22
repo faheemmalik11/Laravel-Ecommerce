@@ -6,10 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Cookie;
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['jwt.verify']);
-    }
+
     
     public function check(Request $request){
         

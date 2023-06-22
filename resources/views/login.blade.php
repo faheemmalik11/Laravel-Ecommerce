@@ -3,7 +3,11 @@
 <h1 class="d-flex align-items-center justify-content-center p-3">Sign In</h1>
 @endsection
     @section('content')
-    
+
+    @if(session('error'))
+    <p class="alert alert-primary">{{session('error')}}</p>
+    @endif
+
     <form method="post" action="{{route('logPost')}}">
   <!-- Email input -->
   <div class="form-outline mb-4">
