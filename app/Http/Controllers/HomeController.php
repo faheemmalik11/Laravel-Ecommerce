@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Cookie;
+use App\Models\Category;
+
 class HomeController extends Controller
 {
 
     
     public function check(Request $request){
-        
-            // dd($_COOKIE['credentials']);
-            // $credentials = json_decode($credentials);
-            // dd(\Cookie::get('credentials'));
-            // dd( session('credentials'));
-        return view('home');
+        $categories = Category::all();
+        return view('home',compact('categories'));
 }
 }

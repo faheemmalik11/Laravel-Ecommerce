@@ -31,12 +31,18 @@
             <div class="invalid-feedback">{{$message}}</div>
         @enderror
         <label>Category</label>
-        <select class="form-select" name="category" aria-label="Default select example">
-          <option selected>Select Category</option>
-          @foreach($categories as $category)
-          <option value="{{$category->id}}">{{$category->name}}</option>
-          @endforeach
-        </select>
+        <br>
+        @foreach ($categories as $category)
+                    <tr>
+                           <td>
+                            <input class="form-check-input" name= "category[]" type="checkbox" value="{{$category->id}}" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                               {{$category->name}}
+                              </label>
+                            <br>
+                          </td>
+                    </tr>
+                    @endforeach
         <button type="submit" class="btn btn-primary my-4">Add product</button>
     </form >
 

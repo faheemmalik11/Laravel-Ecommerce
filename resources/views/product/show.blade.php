@@ -1,19 +1,20 @@
 <x-master>
     @section('content')
-<form class="form-inline" method="post" action="{{route('product.create')}}" >
+    <h1>Update Product</h1>
+<form class="form-inline" method="post" action="{{route('product.update',['product'=>$product])}}" >
         @csrf
         <label>Name</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="product Name">
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{$product->name}}" placeholder="product Name">
         @error('name')
             <div class="invalid-feedback">{{$message}}</div>
         @enderror
         <label>Price</label>
-        <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="product price">
+        <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" value="{{$product->price}}" placeholder="product price">
         @error('price')
             <div class="invalid-feedback">{{$message}}</div>
         @enderror
         <label>Description</label>
-        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="product description">
+        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description" value="{{$product->description}}" placeholder="product description">
         @error('description')
             <div class="invalid-feedback">{{$message}}</div>
         @enderror
@@ -29,18 +30,14 @@
                     <tr>
                     <th>Id</th>
                         <th>Name</th>
-                        <th>Price</th>
-                        <th>Added By</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Delete</th>
+                        <th>Select Category</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                     <th>Id</th>
                         <th>Name</th>
-                        <th>Delete</th>
+                        <th>Select Category</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -48,14 +45,13 @@
                     <tr>
                         <td>{{$category->id}}</td>
                         <td>{{$category->name}}</td>
-                        <form method='post' >
-                            @csrf
-                            <td><button type='submit' class='btn btn-danger btn-sm'  >Attach</button></td>
-                        </form>
-                        <form method='post' >
-                            @csrf
-                            <td><button type='submit' class='btn btn-danger btn-sm'  >Detach</button></td>
-                        </form>
+                            <td>
+                            <input class="form-check-input" name= "category[]" type="checkbox" value="{{$category->id}}" id="flexCheckChecked"
+                            @if($product->categories->contains($category)) 
+                            checked
+                            @endif
+                            >
+                          </td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -63,13 +59,7 @@
               </div>
             </div>
           </div>
-        <select class="form-select" name="product" aria-label="Default select example">
-          <option selected>Select product</option>
-          @foreach($categories as $category)
-          <option value="{{$category->id}}">{{$category->name}}</option>
-          @endforeach
-        </select>
-        <button type="submit" class="btn btn-primary my-4">Add product</button>
+        <button type="submit" class="btn btn-primary my-4">Update product</button>
     </form >
     @endsection
 </x-master>

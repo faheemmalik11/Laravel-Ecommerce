@@ -38,14 +38,21 @@ class ProductController extends Controller
         return view('product.show',compact('product','categories'));
     }
 
-    // public function update(Product $product){
-    //     $inputs = request()->validate([
-    //         'name'=>'required', 'string', 'min:2','max:50',
-    //     ]);
-    //     $product->update($inputs);
-    //     request()->session()->flash('cat-update',$product->name.' Update Successfully');
-    //     return redirect()->route('product.index');
-    // }
+    public function update(Product $product){
+        $inputs = request()->validate([
+            'name'=>'required', 'string', 'min:2','max:50',
+            'description'=>'max:255','string',
+
+        ]);
+        $product->categories()->detach();
+        $product->categories()->attach(request('category'));
+        request()->session()->flash('product-update',$inputs['name'].' Updated Successfully');
+        return redirect()->route('product.index');
+
+        $product->update($inputs);
+        request()->session()->flash('cat-update',$product->name.' Update Successfully');
+        return redirect()->route('product.index');
+    }
 
     public function delete(Product $product){
         $product->delete();
