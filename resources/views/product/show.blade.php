@@ -3,6 +3,15 @@
     <h1>Update Product</h1>
 <form class="form-inline" method="post" action="{{route('product.update',['product'=>$product])}}" >
         @csrf
+        <div>
+                <img class="img-profile rounded-circle m-3" width=200px; height=200px; src="{{asset($product->product_image)}}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Product Image</label>
+                <input type="file" class="form-control-file" name = "profile_image"  >
+            </div>
+
         <label>Name</label>
         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{$product->name}}" placeholder="product Name">
         @error('name')
@@ -16,6 +25,11 @@
         <label>Description</label>
         <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description" value="{{$product->description}}" placeholder="product description">
         @error('description')
+            <div class="invalid-feedback">{{$message}}</div>
+        @enderror
+        <label>Brand</label>
+        <input type="text" name="brand" class="form-control @error('brand') is-invalid @enderror" id="brand" value="{{$product->brand}}" placeholder="product brand">
+        @error('brand')
             <div class="invalid-feedback">{{$message}}</div>
         @enderror
         <label>Category</label>

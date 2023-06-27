@@ -61,12 +61,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout()
-    {
-
-        \Cookie::forget('credentials');
-        return redirect()->route('login');
-    }
+  
 
     public function refresh()
     {

@@ -18,6 +18,12 @@ use App\Http\Controllers\HomeController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('logPost');
+Route::get('/logout', function(){
+
+        setcookie('credentials', '', time() - 24*60*60*60, '/');
+        sleep(2);
+        return redirect()->route('login');
+})->name('logout');
 Route::get('/user', [AuthController::class, 'getUser']);
 
 // Route::middleware('jwt.verify')->group(function() {

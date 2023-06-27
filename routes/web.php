@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -32,7 +33,8 @@ Route::get('/login', function () {
 
 
 Route::middleware(['jwt.verify'])->group(function () {
-    Route::get('/home', [HomeController::class, 'check'] )->name('home');
+    Route::get('/home', [HomeController::class, 'index'] )->name('home');
+    Route::get('/home/{category}', [HomeController::class, 'show_category'] )->name('category.single');
     Route::get('/user/{user}/profile', [UserController::class, 'show'] )->name('user.profile');
     Route::post('/user/{user}/update', [UserController::class, 'update'] )->name('user.profile.update');
 
@@ -48,6 +50,9 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::post('/product/create', [ProductController::class, 'create'] )->name('product.create');
     Route::get('/product/{product}/show', [ProductController::class, 'show'] )->name('product.show');
     Route::post('/product/{product}/update', [ProductController::class, 'update'] )->name('product.update');
+
+    Route::get('/cart/{product}/add', [CartController::class, 'add'] )->name('cart.add');
+    Route::get('/cart/show', [CartController::class, 'show'] )->name('cart.show');
 });
 
 

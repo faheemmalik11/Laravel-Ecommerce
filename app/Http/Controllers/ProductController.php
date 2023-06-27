@@ -20,7 +20,7 @@ class ProductController extends Controller
       
         $inputs = request()->validate([
             'name'=>'required', 'string', 'min:2','max:50',
-            'description'=>'required','max:255','string',
+            'description'=>'required','string',
             'price'=>'required',
             'category'=>'required'
         ]);
