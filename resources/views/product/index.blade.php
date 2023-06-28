@@ -77,6 +77,7 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                    @if(auth()->user()->isSuperAdmin())
                     @foreach ($products as $product)
                     <tr>
                         <td>{{$product->id}}</td>
@@ -91,6 +92,22 @@
                         </form>
                     </tr>
                     @endforeach
+                    @else
+                    @foreach ($userProducts as $product)
+                    <tr>
+                        <td>{{$product->id}}</td>
+                        <td><a href="{{route('product.show',['product'=>$product])}}">{{$product->name}}</a></td>
+                        <td>${{$product->price}}</td>
+                        <td>{{$product->user->name}}</td>
+                        <td>{{$product->created_at->diffForHumans()}}</td>
+                        <td>{{$product->updated_at->diffForHumans()}}</td>
+                        <form method='post' action="{{route('product.delete',['product'=>$product])}}">
+                            @csrf
+                            <td><button type='submit' class='btn btn-danger btn-sm'  >Delete</button></td>
+                        </form>
+                    </tr>
+                    @endforeach
+                    @endif
                   </tbody>
                 </table>
               </div>

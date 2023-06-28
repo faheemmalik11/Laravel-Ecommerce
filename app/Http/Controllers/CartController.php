@@ -4,19 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    // public function add(Product $product){
-    //     auth()->user()->carts()->create(['product_id'=>$product->id]);
-    //     return redirect()->back();
-    // }
+    public function add(Product $product){
+        $cart = auth()->user()->cart;
+        $cart->products()->attach($product->id);
+        return redirect()->back();
+    }
 
-    // public function show(){
-    //     $carts = auth()->user()->carts;
-    //     $products = auth()->user()->products;
+    public function show(){
+        $cart = auth()->user()->cart;
+        $products = $cart->products;
+        return view('cart.index',compact('products'));
         
-    //     return view('cart.index',compact('carts','products'));
-    // }
+    }
+
+    public function remove(Product $product){
+        $cart = auth()->user()->cart;
+        $cart->products()->detach($product->id);
+        return redirect()->back();
+    }
 }

@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             SuperAdminSeeder::class,
         ]);
 
-        \App\Models\User::factory(2)->create();
+        \App\Models\User::factory(2)->afterCreating(function ($user) {
+            $user->cart()->create();
+        })->create();
         \App\Models\Product::factory(10)->create();
     }
 }

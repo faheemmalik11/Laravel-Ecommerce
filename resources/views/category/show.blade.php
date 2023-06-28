@@ -1,4 +1,4 @@
-<x-master>
+<x-master-admin>
     @section('content')
     <h1>Update Category</h1>
 
@@ -13,4 +13,4 @@
 
 
     @endsection
-</x-master>
+</x-master-admin>

@@ -13,7 +13,8 @@ class ProductController extends Controller
     public function index(){
         $products = Product::all();
         $categories = Category::all();
-        return view('product.index',compact('products','categories'));
+        $userProducts = $products->where('user_id',auth()->user()->id);
+        return view('product.index',compact('products','categories','userProducts'));
     }
 
     public function create(){
@@ -34,6 +35,7 @@ class ProductController extends Controller
 
 
     public function show(Product $product){
+        $this->authorize('view',$product);
         $categories = Category::all();
         return view('product.show',compact('product','categories'));
     }

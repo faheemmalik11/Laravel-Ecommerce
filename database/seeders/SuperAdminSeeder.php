@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cart;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -14,13 +15,18 @@ class SuperAdminSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $user = User::create([
             'name' => 'Super Admin',
             'email' => 'qazizubair0309@gmail.com',
-            'password' => 'password123', // password
-            'profile_image'=> 'store/images/super_admin.jpg', 
-            'role_id'=>2
+            'password' => 'password123',
+            'profile_image' => 'store/images/super_admin.jpg',
+            'role_id' => 2
         ]);
-        
+
+        // Create the cart associated with the user
+        $cart = new Cart();
+        $user->cart()->save($cart);
     }
+
+    
 }

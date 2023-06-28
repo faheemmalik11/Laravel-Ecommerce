@@ -16,10 +16,11 @@
         <div
                 class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3"
             >
-                
-    @foreach($carts as $cart)
-            @if($cart->product_id == $products->id)
-
+  
+  
+    
+        @foreach($products as $product)
+            
                 
                 <div class="col">
                     <div class="card h-100 shadow-sm">
@@ -48,30 +49,12 @@
                                 
                             </h5>
 
-                            <div class="clearfix mb-3">
-                                <span
-                                    class="float-start "
-                                    >
-                                    
-                           <a href="{{route('product.show',['product'=>$product])}}" class='btn btn-primary btn-sm'  >Edit</a>
-    
-                                    </span
-                                >
-                                <span class="float-end"
-                                    >
-                                    <form method='post' action="{{route('product.delete',['product'=>$product])}}">
-                            @csrf
-                            <button type='submit' class='btn btn-danger btn-sm'  >Delete</button>
-                        </form>
-                                    </span
-                                >
-                                
-                            </div>
+                           
                             
                             
                             <div class="text-center my-4">
-                                <a href="#" class="btn btn-warning"
-                                    >Check offer</a
+                                <a href="{{route('cart.remove',['product'=>$product])}}" class="btn btn-warning"
+                                    >Remove From Cart</a
                                 >
                             </div>
                             <div class="clearfix mb-1">
@@ -86,10 +69,9 @@
                         </div>
                     </div>
                 </div>
-                
-            @endif    
-            
-             @endforeach
+     
+            @endforeach
+        
         
 
     </div>

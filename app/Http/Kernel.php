@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'jwt.verify' => \App\Http\Middleware\JWTMiddleware::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'superAdminChecker' => \App\Http\Middleware\SuperAdminChecker::class,
     ];
 }

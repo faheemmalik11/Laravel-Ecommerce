@@ -66,7 +66,15 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Product');
     }
 
-    public function carts(){
-        return $this->hasMany('App\Models\Cart');
+    public function cart(){
+        return $this->hasOne('App\Models\Cart');
     }
+
+    public function isSuperAdmin(){
+
+        if($this->role->name == "SuperAdmin"){
+            return true;
+    }
+    return false;
+}
 }

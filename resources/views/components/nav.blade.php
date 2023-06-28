@@ -18,10 +18,7 @@ $categories = App\Models\Category::all();
 
            
 
-          
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('category.index')}}">Category</a>
-          </li>
+     
           <li class="nav-item">
             <a class="nav-link" href="{{route('product.index')}}">Products</a>
           </li>
@@ -52,12 +49,18 @@ $categories = App\Models\Category::all();
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
+                @if(auth()->user()->isSuperAdmin())
+                <a class="dropdown-item" href="{{route('user.dashboard')}}">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Dashboard
+                </a>
+                @endif
                 <a class="dropdown-item" href="{{route('cart.show')}}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cart
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{route('logout')}}"
+                <a class="dropdown-item" href="{{route('logout')}}">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>

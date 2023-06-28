@@ -1,4 +1,4 @@
-<x-master>
+<x-master-admin>
     @section('content')
     @if(session('cat-del'))
         <p class= 'alert alert-danger'>{{session('cat-del')}}</p>
@@ -78,4 +78,4 @@
         <!-- Page level custom scripts --> 
          <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     @endsection
-</x-master>
+</x-master-admin>

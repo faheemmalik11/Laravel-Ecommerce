@@ -6,8 +6,8 @@
         <div id="collapseAuthorization" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Authorization</h6>
-            <a class="collapse-item" href="#">Roles</a>
-            <a class="collapse-item" href="#">Permissions</a>
+            <a class="collapse-item" href="{{route('roles.index')}}">Roles</a>
+            <a class="collapse-item" href="{{route('permissions.index')}}">Permissions</a>
           </div>
         </div>
       </li>
