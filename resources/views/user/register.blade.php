@@ -49,7 +49,7 @@
                   <label class="form-label" for="form3Example4cdg">Repeat user's password</label>
                 </div>
 
-               <input type="hidden" name="role_id" value=1/>
+               <input type="hidden" name="role_id" value="1" />
 
               
 
@@ -58,7 +58,7 @@
                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                 </div>
 
-               
+                
 
               </form>
 

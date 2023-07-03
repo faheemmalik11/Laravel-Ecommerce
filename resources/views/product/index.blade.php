@@ -13,8 +13,12 @@
     <h1>product</h1>
 
 
-    <form class="form-inline" method="post" action="{{route('product.create')}}" >
+    <form class="form-inline" method="post" action="{{route('product.create')}}"  enctype="multipart/form-data">
         @csrf
+        
+
+            
+
         <label>Name</label>
         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="product Name">
         @error('name')
@@ -23,6 +27,11 @@
         <label>Price</label>
         <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="product price">
         @error('price')
+            <div class="invalid-feedback">{{$message}}</div>
+        @enderror
+        <label>Brand</label>
+        <input type="text" name="brand" class="form-control @error('brand') is-invalid @enderror" id="brand" placeholder="product brand">
+        @error('brand')
             <div class="invalid-feedback">{{$message}}</div>
         @enderror
         <label>Description</label>
@@ -43,6 +52,11 @@
                           </td>
                     </tr>
                     @endforeach
+            <div class="form-group">
+                <label >Product Image</label>
+                <input type="file" class="form-control-file" name = "product_image"  >
+            </div>
+
         <button type="submit" class="btn btn-primary my-4">Add product</button>
     </form >
 
@@ -59,7 +73,8 @@
                     <th>Id</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Added By</th>
+                        <th>Brand</th>
+                        <th>Product Image</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Delete</th>
@@ -70,7 +85,8 @@
                     <th>Id</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Added By</th>
+                        <th>Brand</th>
+                        <th>Product Image</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Delete</th>
@@ -83,7 +99,8 @@
                         <td>{{$product->id}}</td>
                         <td><a href="{{route('product.show',['product'=>$product])}}">{{$product->name}}</a></td>
                         <td>${{$product->price}}</td>
-                        <td>{{$product->user->name}}</td>
+                        <td>{{$product->brand}}</td>
+                        <td><img src = '{{asset($product->product_image)}}' width= '100px' height=100px></img></td>
                         <td>{{$product->created_at->diffForHumans()}}</td>
                         <td>{{$product->updated_at->diffForHumans()}}</td>
                         <form method='post' action="{{route('product.delete',['product'=>$product])}}">
@@ -98,7 +115,8 @@
                         <td>{{$product->id}}</td>
                         <td><a href="{{route('product.show',['product'=>$product])}}">{{$product->name}}</a></td>
                         <td>${{$product->price}}</td>
-                        <td>{{$product->user->name}}</td>
+                        <td>{{$product->brand}}</td>
+                        <td><img src = '{{asset($product->product_image)}}' width= '100px' height=100px></img></td>
                         <td>{{$product->created_at->diffForHumans()}}</td>
                         <td>{{$product->updated_at->diffForHumans()}}</td>
                         <form method='post' action="{{route('product.delete',['product'=>$product])}}">

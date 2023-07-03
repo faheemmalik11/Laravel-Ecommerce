@@ -13,6 +13,10 @@
         <div class="alert alert-success" role="alert">
             {{Session::get('message-user-updated')}}
         </div>
+        @elseif(Session::has('message-user-deleted'))
+        <div class="alert alert-danger" role="alert">
+            {{Session::get('message-user-deleted')}}
+        </div>
         @endif
 
        <!-- DataTales Example -->
